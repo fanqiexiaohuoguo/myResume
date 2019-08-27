@@ -25,7 +25,7 @@
                 justify-content: center;
                 align-items: center;
             }
-            .site-welcome .active{
+            .site-welcome.active{
                 display: flex;
             }
         </style>
@@ -35,7 +35,7 @@
             <div class="loading"></div>
         </div>
         <div class="topNavBar">
-            <div class="topNavBar-inner clearfix">
+            <div id="topNavBarInner" class="topNavBar-inner clearfix">
                 <div class="logo">
                     <span class="rs">RS</span>
                     <span class="card">card</span>
@@ -167,7 +167,18 @@
             </div>
         </section>
         <script>
-            siteWelcome.classList.remove("active")
+            // 添加延迟 
+            setTimeout(function(){
+                siteWelcome.classList.remove("active")
+            },1000)
+            window.onscroll=function(){
+                if(window.scrollY>0){
+                    topNavBarInner.classList.add("sticky")
+                }
+                else{
+                    topNavBarInner.classList.remove("sticky")
+                }
+            }
         </script>
     </body>
 </html>
