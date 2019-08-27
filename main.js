@@ -25,3 +25,15 @@ for(let i=0;i<liTags.length;i++){
         li.classList.remove("active")
     }
 }
+//添加跳转效果
+let aTags=document.querySelectorAll("ul.menuTrigger>li>a")
+for(let i=0;i<aTags.length;i++){
+    aTags[i].onclick=function(event){
+        event.preventDefault()
+        let a=event.currentTarget
+        let href=a.getAttribute("href")//#site
+        let element=document.querySelector(href)  
+        let top = element.offsetTop
+        window.scrollTo(0, top - 80)
+    }
+}
