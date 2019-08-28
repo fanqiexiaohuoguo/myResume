@@ -27,6 +27,13 @@ for(let i=0;i<liTags.length;i++){
 }
 //添加跳转效果
 let aTags=document.querySelectorAll("ul.menuTrigger>li>a")
+
+function animate(time) {
+    requestAnimationFrame(animate);
+    TWEEN.update(time);
+  }
+requestAnimationFrame(animate);
+
 for(let i=0;i<aTags.length;i++){
     aTags[i].onclick=function(event){
         event.preventDefault()
@@ -34,6 +41,20 @@ for(let i=0;i<aTags.length;i++){
         let href=a.getAttribute("href")//#site
         let element=document.querySelector(href)  
         let top = element.offsetTop
-        window.scrollTo(0, top - 80)
+
+        //添加缓动效果
+        let currentTop = window.scrollY
+        let targetTop = top - 80
+        let s = targetTop - currentTop // 路程
+        var coords = { y: currentTop}; // 起始位置
+        var t=t>300?300:Math.abs(s) // 时间
+        var tween = new TWEEN.Tween(coords) // 起始位置
+          .to({ y: targetTop}, t) // 结束位置 和 时间
+          .easing(TWEEN.Easing.Cubic.InOut) // 缓动类型
+          .onUpdate(function() {
+            window.scrollTo(0,coords.y) // 如何更新界面
+          })
+          .start(); // 开始缓动
     }
 }
+
