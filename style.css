@@ -136,7 +136,7 @@ h1,h2,h3,h4,h5,h6{
 /* 基本信息卡 */
 body>main{
     position: relative;
-    margin-top:-340px;
+    margin-top:-380px;
     left: 0;
 }
 main .userCard{
@@ -292,14 +292,15 @@ section.skills>ul>li>h3{
     font-size: 14px;
     line-height: 1.1;
 }
-section.skills>ul>li .processBar{
+section.skills .processBar{
     margin-top: 15px;
     height: 5px;
     background:#FAE1E1;
     border-radius: 2px;
     position: relative;
+    overflow: hidden;
 }
-section.skills>ul>li .processBar::after{
+section.skills .processBar::after{
     content: "";
     position: absolute;
     top: 0;
@@ -309,6 +310,11 @@ section.skills>ul>li .processBar::after{
     border-radius: 2px;
     background: #E6686A;
     width: 10%;
+    transform: translateX(0);
+    transition: all 1s;
+}
+section.skills.offset .processBar::after{
+    transform: translateX(-100%);
 }
 /* 作品集 */
 section.portfolio>nav{
@@ -378,4 +384,12 @@ section.portfolio .works>div:nth-child(2){
 section.portfolio .works>div:last-child{
     top: 312px;;
     left: 645px;
+}
+/* 弹出效果 */
+[data-highlight].offset{
+    transform: translateY(60px);
+}
+[data-highlight]{
+    transform: translateY(0);
+    transition: all 0.3s;
 }

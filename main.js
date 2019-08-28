@@ -2,6 +2,14 @@
 setTimeout(function(){
     siteWelcome.classList.remove("active")
 },1000)
+//添加offset类，弹出效果
+let specialTags=document.querySelectorAll("[data-highlight]")
+for(let i=0;i<specialTags.length;i++){
+    specialTags[i].classList.add("offset")
+}
+setTimeout(function(){
+    findClosest()
+},2000)
 //添加滚动导航栏效果
 window.onscroll=function(){
     if(window.scrollY>0){
@@ -11,6 +19,9 @@ window.onscroll=function(){
         topNavBarInner.classList.remove("sticky")
     }
     //添加高亮效果
+    findClosest()
+}
+function findClosest(){
     let minIndex=0
     let specialTags=document.querySelectorAll("[data-highlight]")
     for(let i=0;i<specialTags.length;i++){
@@ -18,6 +29,7 @@ window.onscroll=function(){
             minIndex=i
         }
     }
+    specialTags[minIndex].classList.remove("offset")
     let specialId=specialTags[minIndex].id
     let li=document.querySelector('a[href="#'+ specialId +'"]').parentNode
     let brothersAndMe=li.parentNode.children
