@@ -71,7 +71,8 @@ h1,h2,h3,h4,h5,h6{
     padding: 5px 0px;
     position: relative;
 }
-.topNavBar nav>ul>li.active>a::after{
+.topNavBar nav>ul>li.active>a::after,
+.topNavBar nav>ul>li.highlight>a::after{
     content:"";
     display:block;
     position: absolute;
